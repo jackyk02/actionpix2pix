@@ -11,7 +11,7 @@ from action_processing import ActionTokenizer
 def load_or_create_unet():
     if not os.path.exists("pt"):
         unet = UNet2DConditionModel.from_pretrained(
-            "jackyk07/pix2pix", subfolder="unet", in_channels=8,
+            "jackyk02/pix2pix", subfolder="unet", in_channels=8,
             safety_checker=None, from_flax=True
         ).to("cpu")
         unet.save_pretrained("pt")
