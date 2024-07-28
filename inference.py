@@ -61,18 +61,18 @@ def main():
     unet, vae, text_encoder, tokenizer, scheduler = load_models()
     pipe = create_pipeline(unet, vae, text_encoder, tokenizer, scheduler)
 
-    example_action = [0, 0.00784314, 0, 0, 0, 0.04705882, -0.99607843]
+    example_action = [0, 0, 0, 0, 0, 0, -1]
     action_tokenizer = ActionTokenizer(tokenizer)
     prompt = f"what would it look like after taking the action {action_tokenizer(example_action)}?"
 
     print(prompt)
 
-    image_url = "https://rail.eecs.berkeley.edu/datasets/bridge_release/raw/bridge_data_v2/datacol2_toykitchen7/drawer_pnp/01/2023-04-19_09-18-15/raw/traj_group0/traj0/images0/im_12.jpg"
+    image_url = "https://rail.eecs.berkeley.edu/datasets/bridge_release/raw/bridge_data_v2/datacol2_toykitchen7/drawer_pnp/01/2023-04-19_09-18-15/raw/traj_group0/traj0/images0/im_30.jpg"
     image = Image.open(requests.get(
         image_url, stream=True).raw).resize((256, 256))
 
     for _ in range(10):
-        output_image = run_inference(pipe, prompt, image, 20, 10, 1.5)
+        output_image = run_inference(pipe, prompt, image, 30, 10, 1.5)
 
     output_image.save("output_image.png")
 
