@@ -72,7 +72,7 @@ def main():
         image_url, stream=True).raw).resize((256, 256))
 
     for _ in range(10):
-        output_image = run_inference(pipe, prompt, image, 30, 10, 1.5)
+        output_image = run_inference(pipe, prompt, image, 20, 10, 1.5)
 
     output_image.save("output_image.png")
 
